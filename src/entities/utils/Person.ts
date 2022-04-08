@@ -12,7 +12,9 @@ export class Person extends BaseEntity {
   @Column()
   last_name: string;
 
-  @Column()
+  @Column({
+    nullable: true
+  })
   middle_name: string;
 
   @Column({
@@ -26,8 +28,4 @@ export class Person extends BaseEntity {
   })
   card_number: string;
 
-  @Column({
-    type: "numeric"
-  })
-  balance: number;
 }

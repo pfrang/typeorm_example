@@ -1,6 +1,7 @@
-import { Entity, Column,CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { Entity, Column,CreateDateColumn, UpdateDateColumn, OneToMany, ManyToMany } from "typeorm";
 import { Transaction } from "./Transaction";
 import { Person } from './utils/Person';
+import { Banker } from "./Banker";
 
 @Entity('client')
 export class Client extends Person {
@@ -21,6 +22,11 @@ export class Client extends Person {
   }
 
   @Column({
+    type: "numeric"
+  })
+  balance: number;
+
+  @Column({
     type: "simple-array",
     default: []
   })
@@ -30,7 +36,12 @@ export class Client extends Person {
     () => Transaction,
     transaction => transaction.client
   )
-  transactions: Transaction[]
+  transactions: Transaction[];
+
+  @ManyToMany(
+    () => Banker
+  )
+  bankers: Banker[]
 
   @CreateDateColumn()
   created_at: Date;
