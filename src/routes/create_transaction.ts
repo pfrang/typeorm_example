@@ -8,9 +8,7 @@ router.post("/api/client/:clientId/transaction", async (req, res) => {
 
   const { type, amount } = req.body;
 
-  const client = await Client.findOne(parseInt(clientId));
-
-  const h = parseInt('2')
+  const client = await Client.findOneBy({ id: parseInt(clientId)});
 
   if(!client) {
     return res.json({
