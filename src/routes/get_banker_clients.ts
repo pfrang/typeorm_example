@@ -7,6 +7,7 @@ router.get('/api/bankerclients/:bankerId', async (req, res) => {
 
 
   const banker = Banker.findOneBy( {id: parseInt(bankerId)})
+  console.log(banker)
 
 
   return res.json({
